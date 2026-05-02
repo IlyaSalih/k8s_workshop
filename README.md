@@ -47,7 +47,7 @@ minikube addons enable ingress
  |   ├── 01_namespace.yaml
 ```
 ```
-# yaml
+# 
 
 apiVersion: v1
 kind: Namespace
@@ -74,7 +74,7 @@ kubectl config set-context --current --namespace=workshop
  |   ├── 02_configmap.yaml
 ```
 ```
-# yaml
+# 
 
 apiVersion: v1
 kind: ConfigMap
@@ -108,6 +108,29 @@ data:
 kubectl apply -f manifests/02-configmap.yaml
 
 Что бы не пересобирать docker image при каждом изменении настройки, отделяем конфигурацию от образа контейнера
+```
+## Secrets
+```
+ ├── manifests
+ |   ├── 03_secret.yaml
+```
+```
+# 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+  namespace: workshop
+type: Opaque
+data:
+  POSTGRES_USER: d29ya3Nob3A=        
+  POSTGRES_PASSWORD: c3VwZXJzZWNyZXQ= 
+  POSTGRES_DB: d29ya3Nob3BfZGI=      
+```
+```
+Применяем
+
+kubectl apply -f manifests/03-secret.yaml
 ```
 
 
