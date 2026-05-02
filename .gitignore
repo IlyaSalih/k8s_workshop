@@ -1,0 +1,16 @@
+# Секреты и ключи (ВАЖНО!)
+*.key
+*.pem
+kubeconfig
+.env
+
+# Логи и временные файлы
+*.log
+.DS_Store
+
+# Папки зависимостей
+node_modules/
+venv/
+.idea/
+.vscode/
+
