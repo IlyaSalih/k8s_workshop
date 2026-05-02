@@ -14,3 +14,7 @@ venv/
 .idea/
 .vscode/
 
+# Зависимости и сборки
+kubectl
+minikube-linux-amd64
+
