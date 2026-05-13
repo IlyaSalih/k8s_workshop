@@ -133,6 +133,58 @@ volumes: ConfigMap монтируется как директория. Ключ 
 
 NodePort вместо ClusterIP: ClusterIP работает только внутри кластера. NodePort открывает порт на каждой ноде кластера (диапазон 30000–32767), делая сервис доступным снаружи. Для Minikube это самый простой способ получить доступ к приложению. 
 
+## Проверка и отладка
+
+### Проверка состояния всего
+
+1. kubectl get all 
+
+```
+NAME                                       READY   STATUS    RESTARTS   AGE
+pod/app-deployment-6db5769449-hj4n2        1/1     Running   0          25m
+pod/app-deployment-6db5769449-hshm2        1/1     Running   0          25m
+pod/postgres-deployment-7894c9b8b6-9zwhn   1/1     Running   0          10d
+
+NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/app-service        NodePort    10.108.225.193   <none>        80:32206/TCP   7m34s
+service/postgres-service   ClusterIP   10.107.105.124   <none>        5432/TCP       56m
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/app-deployment        2/2     2            2           25m
+deployment.apps/postgres-deployment   1/1     1            1           10d
+
+NAME                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/app-deployment-6db5769449        2         2         2       25m
+replicaset.apps/postgres-deployment-589c8688b8   0         0         0       10d
+replicaset.apps/postgres-deployment-7894c9b8b6   1         1         1       10d
+```
+
+### Открываем приложение в браузере
+
+2. minikube service app-service -n workshop
+
+```
+┌───────────┬─────────────┬─────────────┬───────────────────────────┐
+│ NAMESPACE │    NAME     │ TARGET PORT │            URL            │
+├───────────┼─────────────┼─────────────┼───────────────────────────┤
+│ workshop  │ app-service │ 80          │ http://192.168.49.2:32206 │
+└───────────┴─────────────┴─────────────┴───────────────────────────┘
+🎉  Opening service workshop/app-service in default browser...
+```
+
+![in browser](screenshots/in%20browser)
+
+minikube автоматически пробрасывает порт и открывает браузер, где задеплоин nginx
+
+## Обновление версии приложения
+
+[08_app_deployment.yaml](manifests/08_app_deployment_v2.yaml)
+
+1. kubectl apply -f manifests/08_app_deployment_v2.yaml
+
+
+
+
 
 
 
