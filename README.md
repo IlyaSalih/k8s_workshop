@@ -123,6 +123,15 @@ rollingUpdate: при maxUnavailable: 0 и maxSurge: 1 обновление вы
 
 volumes: ConfigMap монтируется как директория. Ключ nginx.conf превращается в файл /etc/nginx/conf.d/default.conf. Это позволяет изменить конфиг nginx без пересборки образа — достаточно обновить ConfigMap.
 
+## Service для приложений
+
+[07_app_service.yaml](manifests/07_app_service.yaml)
+
+### Применяем
+
+1. kubectl apply -f manifests/07_app_service.yaml
+
+NodePort вместо ClusterIP: ClusterIP работает только внутри кластера. NodePort открывает порт на каждой ноде кластера (диапазон 30000–32767), делая сервис доступным снаружи. Для Minikube это самый простой способ получить доступ к приложению. 
 
 
 
