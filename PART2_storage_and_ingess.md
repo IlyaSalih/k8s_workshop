@@ -64,7 +64,7 @@ minikube ssh "sudo mkdir -p /mnt/data/postgres"
 
 STATUS: Bound — это ключевой момент. Kubernetes нашёл PV, который подходит под запрос PVC (тот же storageClassName, достаточный размер, совпадающий accessMode), и связал их. Если бы подходящего PV не было — статус остался бы Pending.
 
-[part2_pvc.png](screenshots/part2_pvc.png)
+![part2_pvc.png](screenshots/part2_pvc.png)
 
 ## Подключаем PVC к Deployment PostgreSQL
 
@@ -74,3 +74,12 @@ STATUS: Bound — это ключевой момент. Kubernetes нашёл PV
 1. kubectl apply -f manifests/04_db_deployment.yaml
 2. kubectl get pods -n workshop -w
 ```
+
+## Проверяем что данные сохраняются
+
+Выполняем команды из демонстрации проблемы
+
+![part2_final_test.png](screenshots/part2_final_test.png)
+
+
+
