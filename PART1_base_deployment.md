@@ -152,7 +152,7 @@ replicaset.apps/postgres-deployment-7894c9b8b6   1         1         1       10d
 🎉  Opening service workshop/app-service in default browser...
 ```
 
-![in browser](screenshots/in%20browser)
+![in_browser.png](screenshots/in_browser.png)
 
 minikube автоматически пробрасывает порт и открывает браузер, где задеплоин nginx
 
