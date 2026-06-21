@@ -39,6 +39,10 @@ spec:
             secretKeyRef:
               name: db-credentials
               key: POSTGRES_DB
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
         resources:
           requests:
             memory: "256Mi"
@@ -56,3 +60,7 @@ spec:
             command: ["pg_isready", "-U", "workshop"]
           initialDelaySeconds: 30
           periodSeconds: 10
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-pvc
